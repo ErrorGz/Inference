@@ -24,17 +24,8 @@ message(STATUS "OpenCV libraries: ${OpenCV_LIBS}")
 include_directories(${CMAKE_SOURCE_DIR}/include)
 include_directories(${OpenCV_INCLUDE_DIRS})
 
-# 源文件
-file(GLOB_RECURSE SOURCES 
-    "${CMAKE_SOURCE_DIR}/src/*.cpp"
-    "${CMAKE_SOURCE_DIR}/src/*.cc"
-)
-
-# 创建可执行文件
-add_executable(${PROJECT_NAME} 
-    main.cpp
-    ${SOURCES}
-)
+# 创建可执行文件（只需要 main.cpp，其他都是头文件实现）
+add_executable(${PROJECT_NAME} main.cpp)
 
 # 链接 OpenCV 库
 target_link_libraries(${PROJECT_NAME} 
@@ -45,3 +36,10 @@ target_link_libraries(${PROJECT_NAME}
 set_target_properties(${PROJECT_NAME} PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
 )
+
+# 可选：包含测试目录
+option(BUILD_TESTS "Build test programs" OFF)
+if(BUILD_TESTS)
+    enable_testing()
+    add_subdirectory(tests)
+endif()

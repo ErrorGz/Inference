@@ -79,6 +79,19 @@ Thumbs.db
 *.tar
 *.zip
 
-# Test files (optional - remove if you want to track test executables)
-test_*
-*_test
+# Test executables and temporary files
+build/tests/
+tests/temp/*.exe
+tests/temp/*.out
+tests/temp/temp_*
+tests/temp/experiment_*
+
+# Test logs and output
+test_logs/
+*_test.log
+temp_test.log
+
+# Test data and temporary files
+tests/temp/test_data/
+tests/temp/*.dat
+tests/temp/*.tmp
